@@ -3,11 +3,14 @@ from lottery_runner.models.participant import Participant
 from lottery_runner.models.lottery import BalancedLottery
 
 class LotteryRunner:
-    def __init__(self):
+    def __init__(self, user:Participant=None):
         self.open_lotteries = {}
         self.closed_lotteries = []
         self.users = {}
-        self.acting_user = self.create_user('test-user', 100)
+        if user:
+            self.acting_user = user
+        else:
+            self.acting_user = self.create_user('test-user', 100)
 
         
     def create_user(self, name:str, init_balance:int=100) -> Participant:
